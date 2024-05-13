@@ -1,6 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 from .models import Message
 from .serializers import MessageSerializer
@@ -9,7 +12,8 @@ class SendMessageView(APIView):
   permission_classes = [IsAuthenticated]
 
   def post(self, request, format=None):
-    serializer = MessageSerializer(data=request.data)
+    # Access data from the request body (assuming JSON)
+    serializer = MessageSerializer(data=request.data)  # Use request.data for JSON data
     if serializer.is_valid():
       sender = request.user
       recipient_username = request.data["recipient_username"]
