@@ -11,7 +11,7 @@ class BookmarkSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = Bookmark
-    fields = ['id', 'created_at', 'owner', 'bookmarked_post']
+    fields = ['id', 'created_at', 'owner', 'post']
 
   def create(self, validated_data):
     try:
