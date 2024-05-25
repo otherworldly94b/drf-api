@@ -1,0 +1,10 @@
+from bookmarks.models import Bookmark  # Replace with your app and model name
+
+# View all objects in the table
+all_objects = Bookmark.objects.all()
+for obj in all_objects:
+    print(obj)
+
+# Get a specific object
+specific_object = Bookmark.objects.get(id=1)  # Replace ID with the desired one
+print(specific_object)

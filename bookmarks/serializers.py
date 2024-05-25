@@ -5,13 +5,13 @@ from bookmarks.models import Bookmark
 class BookmarkSerializer(serializers.ModelSerializer):
   """
   Serializer for the Bookmark model
-  The create method handles the unique constraint on 'owner' and 'post'
+  The create method handles the unique constraint on 'owner' and 'bookmark_post'
   """
   owner = serializers.ReadOnlyField(source='owner.username')
 
   class Meta:
     model = Bookmark
-    fields = ['id', 'created_at', 'owner', 'post']
+    fields = ['id', 'created_at', 'owner', 'bookmark_post']
 
   def create(self, validated_data):
     try:
