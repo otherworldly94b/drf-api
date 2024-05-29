@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Profile
 from followers.models import Follower
+# from messaging.models import Message
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -31,4 +32,5 @@ class ProfileSerializer(serializers.ModelSerializer):
             'id', 'owner', 'created_at', 'updated_at', 'name',
             'content', 'image', 'is_owner', 'following_id',
             'posts_count', 'followers_count', 'following_count',
+            'owner_id'
         ]
