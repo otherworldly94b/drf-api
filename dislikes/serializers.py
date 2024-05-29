@@ -1,6 +1,6 @@
 from django.db import IntegrityError
 from rest_framework import serializers
-from likes.models import Dislike
+from dislikes.models import Dislike
 
 
 class DislikeSerializer(serializers.ModelSerializer):
