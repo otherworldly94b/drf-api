@@ -1,10 +1,14 @@
 from rest_framework import serializers
 from .models import Profile
 from followers.models import Follower
-# from messaging.models import Message
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Profile model instances.
+    Includes additional computed fields like is_owner, 
+    following_id, and follower/following counts.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     following_id = serializers.SerializerMethodField()
@@ -22,7 +26,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             following = Follower.objects.filter(
                 owner=user, followed=obj.owner
             ).first()
-            # print(following)
+
             return following.id if following else None
         return None
 

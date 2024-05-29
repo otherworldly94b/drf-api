@@ -6,6 +6,13 @@ from dislikes.models import Dislike
 
 
 class PostSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Post model instances.
+    Includes owner information, profile details, 
+    and computed fields like like/bookmark/dislike counts, 
+    and IDs for the current user's 
+    interactions (if authenticated).
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
@@ -19,6 +26,10 @@ class PostSerializer(serializers.ModelSerializer):
     comments_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
+        """
+        Image validation to ensure it is under 2MB in size and 
+        does not exceed 4096px in width or height.
+        """
         if value.size > 2 * 1024 * 1024:
             raise serializers.ValidationError('Image size larger than 2MB!')
         if value.image.height > 4096:

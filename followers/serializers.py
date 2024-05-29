@@ -6,7 +6,8 @@ from .models import Follower
 class FollowerSerializer(serializers.ModelSerializer):
     """
     Serializer for the Follower model
-    Create method handles the unique constraint on 'owner' and 'followed'
+    Create method handles the unique 
+    constraint on 'owner' and 'followed'
     """
     owner = serializers.ReadOnlyField(source='owner.username')
     followed_name = serializers.ReadOnlyField(source='followed.username')
