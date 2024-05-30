@@ -1,110 +1,123 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Furrbook - API
 
-Welcome otherworldly94b,
+## Project description
+Furrbook is a social media platform all about showing off your furry friends. It has been designed for its users to share their pets' most interesting, funny and beautiful moments. The application consists of the React app and an API. Welcome to the Django Rest Framework API project section.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+[Furrbook - API live site](https://drf-api-ach-34946935b146.herokuapp.com/)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+## Features
 
-## Gitpod Reminders
+### User stories
+|    as   |            I want to           |                                           so that I can                                          |                                mapping API feature                                |
+|:-------:|:------------------------------:|:------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|
+| user    | register for an account        | have a personal profile with a picture                                                           | dj-rest-auth<br>Create profile (signals)                                          |
+| user    | register for an account        | create, like and comment on posts                                                                | Create post<br>Create comment<br>Create like<br>Create dislike<br>Create bookmark |
+| user    | register for an account        | follow users                                                                                     | Create follower                                                                   |
+| visitor | view a list of posts           | browse the most recent uploads                                                                   | List/ Filter posts                                                                |
+| visitor | view an individual post        | see user feedback, i.e. likes and read comments                                                  | Retrieve post                                                                     |
+| visitor | search a list of posts         | find a post by a specific artist or a title                                                      | List/ Filter posts                                                                |
+| visitor | scroll through a list of posts | browse the site more comfortably                                                                 | List/ Filter posts                                                                |
+| user    | edit and delete my post        | correct or hide any mistakes                                                                     | Update property<br>Destroy property                                               |
+| user    | create a post                  | share my moments with others                                                                     | Create post                                                                       |
+| user    | view liked posts               | go back often to my favourite posts                                                              | List/ Filter posts                                                                |
+| user    | view followed users' posts     | keep up with my favourite users' moments                                                         | List/ Filter posts                                                                |
+| user    | like a post                    | express my interest in someone's shared moment                                                   | Create like                                                                       |
+| user    | unlike a post                  | express that my interest in someone's shared moment has faded away                               | Destroy like                                                                      |
+| user    | dislike a post                 | express my disinterest in someone's shared moment                                                | Create dislike                                                                    |
+| user    | undislike a post               | express that my disinterest in someone's shared moment has faded away                            | Destroy dislike                                                                   |
+| user    | bookmark a post                | express my interest in saving someone's shared moment                                            | Create bookmark                                                                   |
+| user    | unbookmark a post              | express that my interest in saving someone's shared moment has faded away                        | Destroy bookmark                                                                  |
+| user    | create a comment               | share my thoughts on other people's content                                                      | Create comment                                                                    |
+| user    | edit and delete my comment     | correct or hide any mistakes                                                                     | Update comment<br>Destroy comment                                                 |
+| user    | view a profile                 | see a user's recent posts + post, followers, following count data                                | Retrieve profile<br>List/ filter posts                                            |
+| user    | edit a profile                 | update my profile information                                                                    | Update profile                                                                    |
+| user    | follow a profile               | express my interest in someone's content                                                         | Create follower                                                                   |
+| user    | unfollow a profile             | express that my interest in someone's content has faded away and remove their posts from my feed | Destroy follower                                                                  |
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+### Content Management:
+- Admin/Owner can manage all functions from the Django admin interface.
 
-`python3 -m http.server`
+## Entity Relationship Diagram
 
-A blue button should appear to click: _Make Public_,
+![ERD](https://res.cloudinary.com/dgzf4ydy2/image/upload/v1717089653/ERD_vyo7zb.png)
 
-Another blue button should appear to click: _Open Browser_.
+## Models and CRUD breakdown
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+|   model   |           endpoints          |     create    | retrieve | update | delete |                       filter                       | text search |
+|:---------:|:----------------------------:|:-------------:|:--------:|:------:|:------:|:--------------------------------------------------:|:-----------:|
+| users     | users/<br>users/:id/         | yes           | yes      | yes    | no     | no                                                 | no          |
+| profiles  | profiles/<br>profiles/:id/   | yes (signals) | yes      | yes    | no     | following<br>followed                              | name        |
+| likes     | likes/<br>likes/:id/         | yes           | yes      | no     | yes    | no                                                 | no          |
+| dislikes  | dislikes/<br>dislikes/:id/   | yes           | yes      | no     | yes    | no                                                 | no          |
+| bookmarks | bookmarks/<br>bookmarks/:id/ | yes           | yes      | no     | yes    | no                                                 | no          |
+| comments  | comments/<br>comments/:id/   | yes           | yes      | yes    | yes    | post                                               | no          |
+| followers | followers/<br>followers/:id/ | yes           | yes      | no     | yes    | no                                                 | no          |
+| posts     | posts/<br>posts/:id/         | yes           | yes      | yes    | yes    | profile<br>liked<br>disliked<br>bookmarked<br>feed | title       |
 
-A blue button should appear to click: _Make Public_,
+## Technologies Used
+- Python, Django Framework
 
-Another blue button should appear to click: _Open Browser_.
+## Tests
+**Automated Testing:** Unit tests were written to ensure core functionalities works as expected.
+### Posts app:
+    - logged out users can list posts
+    - logged in users can create a post
+    - logged out users can't create a post
+    - logged out users can retrieve a post with a valid id
+    - logged out users can't retrieve a post with an invalid id
+    - logged in users can update a post they own
+    - logged in users can't update a post they don't own
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+**Manual Testing:** Extensive manual testing involved clicking through all functionalities, verifying form submissions, and confirming page loads.
+### All apps:
+- logged out users can list posts, bookmarks, likes, comments, followers and profiles
+- logged in users can create posts, bookmarks, likes, comments, followers and profiles
+- logged out users can't create posts, bookmarks, likes, comments, followers and profiles
+- logged out users can retrieve posts, bookmarks, likes, comments, followers and profiles with a valid id
+- logged out users can't retrieve posts, bookmarks, likes, comments, followers and profiles with an invalid id
+- logged in users can update posts, bookmarks, likes, comments, followers and profiles they own
+- logged in users can't update posts, bookmarks, likes, comments, followers and profiles they don't own
 
-To log into the Heroku toolbelt CLI:
+**Pep8:** Too many files to upload but all the ones I edited came out with this:
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+![PEP8](https://res.cloudinary.com/dgzf4ydy2/image/upload/v1717104096/PEP8_qt8vgq.png)
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Project Setup and Configuration
+This section details the steps taken to configure the project for deployment:
 
-------
+### Database Connection:
 
-## Release History
+- Installed psycopg2 library to connect to the PostgreSQL database.
+- Integrated dj-database-url to manage database URLs from environment variables.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### Authentication:
 
-**September 20 2023:** Update Python version to 3.9.17.
+- Configured dj-rest-auth library to utilize JSON Web Tokens (JWTs) for authentication.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+### Security:
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+- Defined allowed hosts in project settings to restrict access.
+- Configured Cross-Origin Resource Sharing (CORS) using allowed_origins to control acceptable origins for API requests.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+### API Response Format:
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+- Set the default renderer to JSON for a consistent API response format.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+### Deployment
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+This project can be deployed on various cloud platforms. Here are generic instructions for deploying on Heroku:
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+1. **Heroku Setup:** Create a Heroku account and install the Heroku CLI following their instructions [Heroku Documentation Link](https://devcenter.heroku.com/).
+2. **Git Integration:** Initialize a Git repository in your project directory and push your code to Heroku. Refer to the Heroku documentation for details [Heroku Git Deployment Guide](https://devcenter.heroku.com/articles/deploying-python).
+3. **Requirements:** Create a `requirements.txt` file listing all your project dependencies. Heroku will install them automatically during deployment.
+4. **Configuration:** Set environment variables for any sensitive information like database credentials. Heroku provides ways to manage these securely.
+    - set the following environment variables:
+       - CLIENT_ORIGIN
+       - CLOUDINARY_URL
+       - DATABASE_URL
+       - DISABLE_COLLECTSTATIC
+       - SECRET_KEY
+5. **Procfile:** Create a `Procfile` file specifying the command to run your Django application. A simple example: `web: gunicorn myproject.wsgi:application --log-file -`.
+6. **Deploy:** Once everything is set up, run `heroku deploy` to deploy your application to Heroku or log in to your Heroku Dashboard and manually Deploy Branch from the Deploy tab.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+**Note:** These are general guidelines. Refer to Heroku's documentation for the latest and most accurate instructions.

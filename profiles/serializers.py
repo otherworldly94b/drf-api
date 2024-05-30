@@ -6,7 +6,7 @@ from followers.models import Follower
 class ProfileSerializer(serializers.ModelSerializer):
     """
     Serializer for Profile model instances.
-    Includes additional computed fields like is_owner, 
+    Includes additional computed fields like is_owner,
     following_id, and follower/following counts.
     """
     owner = serializers.ReadOnlyField(source='owner.username')

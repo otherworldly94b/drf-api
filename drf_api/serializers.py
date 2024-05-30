@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 class CurrentUserSerializer(UserDetailsSerializer):
     """
-    Serializer for the current logged-in user, 
+    Serializer for the current logged-in user,
     extending the default user details with profile information.
     """
     profile_id = serializers.ReadOnlyField(source='profile.id')

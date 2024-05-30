@@ -63,9 +63,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = ['*',
-                 '8000-otherworldly94b-drfapi-t70rzsubq8p.ws-eu111.gitpod.io', 
+                 '8000-otherworldly94b-drfapi-t70rzsubq8p.ws-eu111.gitpod.io',
                  '8000-otherworldly94b-drfapi-t70rzsubq8p.ws-eu110.gitpod.io',
-                 os.environ.get('ALLOWED_HOST'), 
+                 os.environ.get('ALLOWED_HOST'),
                  '8000-otherworldly94b-drfapi-t70rzsubq8p.ws-eu114.gitpod.io',
                  'testserver']
 
@@ -90,14 +90,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
-    'corsheaders', 
+    'corsheaders',
     'profiles',
     'posts',
     'comments',
     'likes',
     'followers',
     'bookmarks',
-    'dislikes',    
+    'dislikes',
 ]
 
 SITE_ID = 1
@@ -122,7 +122,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
-    
+
 
 CORS_ALLOW_CREDENTIALS = True
 
