@@ -58,18 +58,22 @@ Furrbook is a social media platform all about showing off your furry friends. It
 - Python, Django Framework
 
 ## Tests
-**Automated Testing:** Unit tests were written to ensure core functionalities works as expected.
-### Posts app:
-    - logged out users can list posts
-    - logged in users can create a post
-    - logged out users can't create a post
-    - logged out users can retrieve a post with a valid id
-    - logged out users can't retrieve a post with an invalid id
-    - logged in users can update a post they own
-    - logged in users can't update a post they don't own
+### Automated Testing:
+Unit tests were written to ensure core functionalities works as expected.
 
-**Manual Testing:** Extensive manual testing involved clicking through all functionalities, verifying form submissions, and confirming page loads.
-### All apps:
+**Posts app:**
+- logged out users can list posts
+- logged in users can create a post
+- logged out users can't create a post
+- logged out users can retrieve a post with a valid id
+- logged out users can't retrieve a post with an invalid id
+- logged in users can update a post they own
+- logged in users can't update a post they don't own
+
+### Manual Testing: 
+Extensive manual testing involved clicking through all functionalities, verifying form submissions, and confirming page loads.
+
+**All apps:**
 - logged out users can list posts, bookmarks, likes, comments, followers and profiles
 - logged in users can create posts, bookmarks, likes, comments, followers and profiles
 - logged out users can't create posts, bookmarks, likes, comments, followers and profiles
