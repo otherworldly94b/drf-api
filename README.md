@@ -121,3 +121,9 @@ This project can be deployed on various cloud platforms. Here are generic instru
 6. **Deploy:** Once everything is set up, run `heroku deploy` to deploy your application to Heroku or log in to your Heroku Dashboard and manually Deploy Branch from the Deploy tab.
 
 **Note:** These are general guidelines. Refer to Heroku's documentation for the latest and most accurate instructions.
+
+## Credits
+
+- Major Code credits to the [Django REST Framework Walkthrough](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+DRF+2021_T1/courseware/f775d54df4da44d18309888b3fe884f7/bc5fbada70104d489aa0363a03d8bda8/) project with a few new custom elements, additions and functionalities.
+- Icon set used from [fontawesome](https://fontawesome.com/icons)
+- Major credits to my mentor for always advising me and listening to my ideas.
